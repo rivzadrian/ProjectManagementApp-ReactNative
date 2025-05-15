@@ -4,18 +4,9 @@ import "./global.css"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text className="bg-red-500">ASyyyiiiiikkkkkkk  ini jsxxxx</Text>
+    <View className="flex-1 items-center justify-center bg-slate-300">
+      <Text className="bg-red-500">ASyyyiiiiikkkkkkk  ini jsxxxx walssss</Text>
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
