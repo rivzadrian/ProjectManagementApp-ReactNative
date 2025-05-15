@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import "../../../global.css";
 import { loadFonts } from "../../lib/font";
 import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ActivityIndicator, TextInput } from "react-native";
-import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
+import { router } from "expo-router";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -17,11 +17,13 @@ export default function Register() {
 
   const handleRegister = async () => {};
 
-  const handleGoToLogin = () => {};
+  const handleGoToLogin = () => {
+    router.replace('/auth/login')
+  };
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View className="flex-1 px-1 justify-center">
+      <View className="flex-1 px-9 justify-center">
         <Text className="text-3xl font-bold text-gray-900 mb-8 font-circular-bold w-64">
           Sign Up Now! and Starting to Work!
         </Text>

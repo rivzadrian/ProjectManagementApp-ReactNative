@@ -5,6 +5,7 @@ import { loadFonts } from "../../lib/font";
 import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ActivityIndicator, TextInput } from "react-native";
+import { router } from "expo-router";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,9 +14,13 @@ export default function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSingIn = async () => {};
+  const handleSingIn = async () => {
+    router.replace("/(main)")
+  };
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    router.push("/auth/register")
+  };
 
 //   useEffect(() => {
 //     async function prepare() {
@@ -36,7 +41,7 @@ export default function Login() {
       </Text>
       <View className="space-y-4">
         <TextInput
-          className="w-full h-14 mb-14 px-4 bg-gray-50 bg-opacity-10 rounded-xl text-base text-gray-900"
+          className="w-full h-14 mb-3 px-4 bg-gray-50 bg-opacity-10 rounded-xl text-base text-gray-900"
           placeholder="Your email"
           placeholderTextColor="#9ca3af"
           value={email}
