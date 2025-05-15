@@ -17,17 +17,17 @@ export default function Login() {
 
   const handleSignUp = () => {};
 
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await loadFonts();
-      } catch (error) {
-        console.warn(e);ßß
-      }
-    }
+//   useEffect(() => {
+//     async function prepare() {
+//       try {
+//         await loadFonts();
+//       } catch (error) {
+//         console.warn(e);ßß
+//       }
+//     }
 
-    prepare();
-  }, []);
+//     prepare();
+//   }, []);
 
   return (
     <View className="flex-1 px-6 justify-center">
