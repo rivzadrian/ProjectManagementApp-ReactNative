@@ -1,21 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import "./global.css";
-import { loadFonts } from "./src/lib/font";
+import "../../../global.css";
+import { loadFonts } from "../../lib/font";
 import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ActivityIndicator, TextInput } from "react-native";
 
-export default function App() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSingIn = async () => {
-    
-  };
+  const handleSingIn = async () => {};
 
   const handleSignUp = () => {};
 
@@ -24,7 +22,7 @@ export default function App() {
       try {
         await loadFonts();
       } catch (error) {
-        console.warn(e);
+        console.warn(e);ßß
       }
     }
 
