@@ -5,6 +5,7 @@ import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import "../../global.css";
 import { loadFonts } from "../lib/font";
+import { ThemeProvider } from "../component/theme-provider";
 
 export default function RootLayout() {
   useEffect(() => {
@@ -20,6 +21,8 @@ export default function RootLayout() {
 
   return (
     <View style={{ flex: 1 }}>
+        
+    <ThemeProvider>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }} edges={["bottom", "top"]}>
           <Stack    
@@ -36,6 +39,7 @@ export default function RootLayout() {
           </Stack>
         </SafeAreaView>
       </SafeAreaProvider>
+      </ThemeProvider>
     </View>
   );
 }

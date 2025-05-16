@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import { ThemeToggle } from "../../component/theme-toggle";
-import RunningText from "../../component/running-text";
+// import RunningText from "../../component/running-text";
 
 export default function Main() {
   const handleLogout = async () => {
@@ -10,7 +10,6 @@ export default function Main() {
 
   return (
 <View className="flex-1 items-center justify-center bg-white dark:bg-gray-900">
-  {/* <RunningText /> */}
   <Text className="text-gray-900 dark:text-white text-xl mb-4">
     Welcome to Main Page!
   </Text>
