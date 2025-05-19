@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ActivityIndicator, TextInput } from "react-native";
 import { router } from "expo-router";
+import api from "../../lib/api";
+import Toast from "react-native-toast-message";
+import { getAccessToken, setAccessToken } from "../../lib/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,25 +17,60 @@ export default function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    const getToken = async () => {
+      const currentToken = await getAccessToken();
+      console.log("token: ", currentToken);
+    };
+
+    getToken();
+  }, []);
+
   const handleSingIn = async () => {
-    router.replace("/(main)")
+    if (!email || !password) {
+      setError("Please fill in all field");
+      return;
+    }
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await api.post("/api/auth/login", {
+        email,
+        password,
+      });
+      // console.log("response: ", response.data.accessToken);
+      await setAccessToken(response.data.accessToken);
+      Toast.show({
+        type: "success",
+        text1: "Welcome Back",
+        text2: "Login Success 👋",
+      });
+      router.replace("/(main)");
+    } catch (error) {
+      setError("Login failed. Please try again");
+      console.error("Login error:", error);
+    } finally {
+      setLoading(false);
+    }
+    // router.replace("/(main)")
   };
 
   const handleSignUp = () => {
-    router.push("/auth/register")
+    router.push("/auth/register");
   };
 
-//   useEffect(() => {
-//     async function prepare() {
-//       try {
-//         await loadFonts();
-//       } catch (error) {
-//         console.warn(e);ßß
-//       }
-//     }
+  //   useEffect(() => {
+  //     async function prepare() {
+  //       try {
+  //         await loadFonts();
+  //       } catch (error) {
+  //         console.warn(e);ßß
+  //       }
+  //     }
 
-//     prepare();
-//   }, []);
+  //     prepare();
+  //   }, []);
 
   return (
     <View className="flex-1 px-6 justify-center">
@@ -45,7 +83,10 @@ export default function Login() {
           placeholder="Your email"
           placeholderTextColor="#9ca3af"
           value={email}
-          onChangeText={setEmail}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          onChangeText={(text) => setEmail(text.toLowerCase())}
+          editable={!loading}
         />
         <View className="flex-row items-center">
           <TextInput
@@ -54,7 +95,9 @@ export default function Login() {
             placeholderTextColor="#9ca3af"
             value={password}
             onChangeText={setPassword}
+            autoCapitalize="none"
             secureTextEntry={!showPassword}
+            editable={!loading}
           />
           <TouchableOpacity
             onPress={() => setShowPassword(!showPassword)}

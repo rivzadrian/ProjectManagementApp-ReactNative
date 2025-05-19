@@ -6,6 +6,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import "../../global.css";
 import { loadFonts } from "../lib/font";
 import { ThemeProvider } from "../component/theme-provider";
+import Toast from 'react-native-toast-message';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function RootLayout() {
           >
             <StatusBar style="dark"/>
           </Stack>
+          <Toast />
         </SafeAreaView>
       </SafeAreaProvider>
       </ThemeProvider>
